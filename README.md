@@ -6,9 +6,11 @@ CI Resources for [cube-release](https://github.com/andrew-edgar/cube-release)
 
 # Development
 
-**Access** 
+## Access 
 
-To access the Concourse Server, you will need to get:
+There are two ways to access our Concourse server:
+
+1. LastPass
 
 - [LastPass](https://lastpass.com) account,  
 - install the [LastPass CLI](https://github.com/lastpass/lastpass-cli), and 
@@ -23,3 +25,7 @@ fly -t <alias> login \
    -p $(lpass show "<key-name>" --password) \
    --team-name <team-name>
 ```
+
+2. GitHub OAuth
+
+To be able to login via Github you will need to be member of the `cf-cube-ci/cube` team. 
