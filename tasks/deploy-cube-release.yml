@@ -8,18 +8,17 @@ image_resource:
 
 params:
   BOSH_DIRECTOR: ~
-  BOSH_CLIENT: ~
-  BOSH_CRT: ibmlgshCA*.crt
-  BOSH_CLIENT_SECRET: ~
   BOSH2_ENV_ALIAS: lite
   DIRECTOR_IP: ~
   CC_API: ~
+  KUBE_NAMESPACE: ~
 
 inputs:
 - name: ci-resources
 - name: cube-release
 - name: cf-deployment
 - name: bosh-lite-softlayer
+- name: eirini-sl-director
 
 run:
   path: ci-resources/scripts/deploy-cube-release.sh

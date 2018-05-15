@@ -5,6 +5,7 @@ if [ -n "$DEBUG" ]; then
     export
 fi
 
+
 if [[ -z $BOSH_CLIENT ]] || [[ -z $BOSH_CLIENT_SECRET ]]; then
   echo 'ERROR: Bosh credentials not found.'
   echo 'Please set up variables $BOSH_CLIENT and $BOSH_CLIENT_SECRET'

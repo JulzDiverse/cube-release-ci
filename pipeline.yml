@@ -1,3 +1,11 @@
+groups:
+- name: erini-cd
+  jobs:
+  - deploy-cube-release
+- name: erini-ci
+  jobs:
+  - run-unit-tests
+
 jobs:
 - name: run-unit-tests
   plan:
@@ -6,17 +14,10 @@ jobs:
   - task: run-tests
     file: ci-resources/tasks/run-unit-tests.yml
 
-- name: update-eirini-release-develop
-  plan:
-  - get: ci-resources
-    passed: [run-unit-tests]
-  - task: update-eirini-submodule
-    file: ci-resources/tasks/update-eirini-submodule.yml
-
 - name: deploy-cube-release
   plan:
+  - get: eirini-sl-director
   - get: ci-resources
-    passed: [update-eirini-release-develop]
   - get: cube-release
     trigger: true
   - get: cf-deployment
@@ -26,14 +27,12 @@ jobs:
     privileged: true
     params:
       BOSH_DIRECTOR: ((bosh_director))
-      BOSH_CLIENT: ((bosh_client))
-      BOSH_CLIENT_SECRET: ((bosh_client_secret))
-      BOSH_CRT: ((bosh_crt))
       DIRECTOR_IP: ((director_ip))
       CC_API: ((cc_api))
       KUBE_CONF: ((cube_conf))
+      KUBE_NAMESPACE: "eirini-cicd"
     file: ci-resources/tasks/deploy-cube-release.yml
-# - name: run-smoke-tests
+
 resources:
 - name: eirini
   type: git
@@ -45,22 +44,29 @@ resources:
   type: git
   source:
     uri: https://github.com/JulzDiverse/cube-release-ci.git
-    branch: master
+    branch: wip-update-release
 
-- name: cube-release
+- name: eirini-release
   type: git
   source:
     uri: https://github.com/andrew-edgar/cube-release.git
-    branch: master
+    branch: develop
 
 - name: cf-deployment
   type: git
   source:
     uri: https://github.com/cloudfoundry/cf-deployment.git
-    branch: master
+    branch: v1.20.0
 
 - name: bosh-lite-softlayer
   type: git
   source:
     uri: http://github.com/JulzDiverse/bosh-lite-softlayer.git
     branch: master
+
+- name: eirini-sl-director
+  type: git
+  source:
+    uri: git@github.ibm.com:eirini/eirini-director.git
+    branch: master
+    private_key: ((eirini-sl-director-private-key))
