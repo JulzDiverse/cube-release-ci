@@ -15,7 +15,7 @@ params:
 
 inputs:
 - name: ci-resources
-- name: cube-release
+- name: eirini-release
 - name: cf-deployment
 - name: bosh-lite-softlayer
 - name: eirini-sl-director

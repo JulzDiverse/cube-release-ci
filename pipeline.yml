@@ -18,7 +18,7 @@ jobs:
   plan:
   - get: eirini-sl-director
   - get: ci-resources
-  - get: cube-release
+  - get: eirini-release
     trigger: true
   - get: cf-deployment
     trigger: true
