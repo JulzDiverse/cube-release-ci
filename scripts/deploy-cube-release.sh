@@ -2,8 +2,11 @@
 
 set -e
 
+export VARS_PATH=eirini-sl-director/environments/softlayer/director/eirini/vars.yml
+
 export BOSH_CLIENT=admin
-export BOSH_CLIENT_SECRET=`bosh int eirini-sl-director/environments/softlayer/director/eirini/vars.yml --path /admin_password`
+export BOSH_CLIENT_SECRET=`bosh int $VARS_PATH --path /admin_password`
+
 
 ./ci-resources/scripts/setup-env.sh
 ./ci-resources/scripts/bosh-login.sh
@@ -12,13 +15,13 @@ pushd ./eirini-release
 
 bosh sync-blobs
 
-bosh add-blob /eirini/eirini.tar cubefs/cubefs.tar
+bosh add-blob /eirini/eirinifs.tar cubefs/cubefs.tar
 
 git submodule update --init --recursive
 
 echo "::::::::::::::DEPLOY CUBE RELEASE:::::::"
 bosh -e lite -d cf deploy -n ../cf-deployment/cf-deployment.yml \
-     --vars-store ../ci-resources/bosh-lite/deployment-vars.yml \ #TODO: move this to private repo
+     --vars-store ../ci-resources/bosh-lite/deployment-vars.yml \
      -o ../cf-deployment/operations/experimental/enable-bpm.yml \
      -o ../cf-deployment/operations/use-compiled-releases.yml \
      -o ../cf-deployment/operations/bosh-lite.yml \
