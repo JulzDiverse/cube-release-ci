@@ -34,6 +34,8 @@ bosh -e lite -d cf deploy -n ../cf-deployment/cf-deployment.yml \
      -v cc_api=$CC_API \
      -v kube_namespace=$KUBE_NAMESPACE \
      -v kube_endpoint="cube-kube.uk-south.containers.mybluemix.net" \
+     -v nats_ip="10.244.0.129" \
+     -v nats_password="x9blf5cuv2gc11km13po" \
      -v cube_ip="10.244.0.142" \
      -v cube_address="http://eirini.eirini.dynamic-dns.net:8090" \
      -v cube_local_path=./
