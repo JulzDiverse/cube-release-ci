@@ -23,6 +23,7 @@ jobs:
       SYSTEM_DOMAIN: ((system_domain))
       EIRINI_IP: ((eirini_ip))
       EIRINI_ADDRESS: ((eirini_address))
+      REGISTRY_ADDRESS: ((registry_address))
     file: ci-resources/tasks/deploy-cube-release.yml
 
 - name: delete-cf-deployment
