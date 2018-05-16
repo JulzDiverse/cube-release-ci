@@ -5,6 +5,9 @@ groups:
 - name: erini-ci
   jobs:
   - run-unit-tests
+- name: manage-cf
+  jobs:
+  - delete-cf-deployment
 
 jobs:
 - name: run-unit-tests

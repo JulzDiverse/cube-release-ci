@@ -35,6 +35,7 @@ bosh -e lite -d cf deploy -n ../cf-deployment/cf-deployment.yml \
      -v kube_endpoint=$KUBE_ENDPOINT \
      -v nats_ip=$NATS_IP \
      -v nats_password=$NATS_PASSWORD \
+     -v registry_address="${DIRECTOR_IP}:8089" \
      -v cube_ip=$EIRINI_IP \
      -v cube_address=$EIRINI_ADDRESS \
      -v cube_local_path=./
