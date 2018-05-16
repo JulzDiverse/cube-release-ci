@@ -28,9 +28,10 @@ jobs:
     params:
       BOSH_DIRECTOR: ((bosh_director))
       DIRECTOR_IP: ((director_ip))
+      DIRECTOR_NAME: ((director_name))
       CC_API: ((cc_api))
-      KUBE_CONF: ((cube_conf))
-      KUBE_ENDPOINT: ((cube_endpoint))
+      KUBE_CONF: ((kube_conf))
+      KUBE_ENDPOINT: ((kube_endpoint))
       KUBE_NAMESPACE: ((kube_namespace))
       NATS_IP: ((nats_ip))
       NATS_PASSWORD: ((nats_password))

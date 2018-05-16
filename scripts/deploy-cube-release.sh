@@ -2,7 +2,7 @@
 
 set -e
 
-export VARS_PATH=eirini-sl-director/environments/softlayer/director/eirini/vars.yml
+export VARS_PATH=eirini-sl-director/environments/softlayer/director/$DIRECTOR_NAME/vars.yml
 
 export BOSH_CLIENT=admin
 export BOSH_CLIENT_SECRET=`bosh int $VARS_PATH --path /admin_password`
