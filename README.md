@@ -1,14 +1,19 @@
-# Cube-Release Concourse CI
+# Eirini CI
 
 CI Resources for [cube-release](https://github.com/andrew-edgar/cube-release)
 
-[VIEW PIPELINE](https://flintstone.ci.cf-app.com/teams/cube/pipelines/cube-release-ci)
+## Pipelines
 
-# Development
+- [Eirini-CI](https://flintstone.ci.cf-app.com/teams/cube/pipelines/eirini-release-ci)
+- [Eirini-Dev](https://flintstone.ci.cf-app.com/teams/eirini/pipelines/eirini-dev)
 
 ## Access 
 
 There are two ways to access our Concourse server:
+
+1. GitHub OAuth
+
+To be able to login via Github you will need to be member of the `cf-cube-ci/cube` team. 
 
 1. LastPass
 
@@ -26,6 +31,33 @@ fly -t <alias> login \
    --team-name <team-name>
 ```
 
-2. GitHub OAuth
+## Development
 
-To be able to login via Github you will need to be member of the `cf-cube-ci/cube` team. 
+### Prereqs
+
+- Access to private repo, which contains environment specific vars
+- [Aviator](https://github.com/JulzDiverse/aviator)
+
+### Fly `eirini-ci`
+
+1. Create the pipelin YAML:
+
+```
+$ aviator
+```
+
+This will create the `eirini-ci.yml`
+
+1. Fly the pipeline using the `./fly.sh` script:
+
+```
+./fly.sh eirini-ci eirini-ci.yml <path-to-private-repo>/concourse/env/eirini.yml
+```
+
+### Fly `eirini-dev`
+
+```
+./fly.sh eirini-dev stubs/eirini-dev.yml <path-to-private-repo>/concourse/env/eirini-dev.yml
+```
+
+

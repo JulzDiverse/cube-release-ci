@@ -7,7 +7,6 @@ export VARS_PATH=eirini-sl-director/environments/softlayer/director/$DIRECTOR_NA
 export BOSH_CLIENT=admin
 export BOSH_CLIENT_SECRET=`bosh int $VARS_PATH --path /admin_password`
 
-
 ./ci-resources/scripts/setup-env.sh
 ./ci-resources/scripts/bosh-login.sh
 
@@ -21,7 +20,7 @@ git submodule update --init --recursive
 
 echo "::::::::::::::DEPLOY CUBE RELEASE:::::::"
 bosh -e lite -d cf deploy -n ../cf-deployment/cf-deployment.yml \
-     --vars-store ../ci-resources/bosh-lite/deployment-vars.yml \
+     --vars-store ../eirini-sl-director/cf-deployment/deployment-vars.yml \
      -o ../cf-deployment/operations/experimental/enable-bpm.yml \
      -o ../cf-deployment/operations/use-compiled-releases.yml \
      -o ../cf-deployment/operations/bosh-lite.yml \

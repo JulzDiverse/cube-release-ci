@@ -1,8 +1,7 @@
-# Currently not working because aviator tries to resolve enviornment variables"
-fly:
-  name: cube-release-ci
-  config: pipeline.yml
-  target: flintstone
-  vars:
-  - vars.yml
-  - "kube_conf=$(cat ~/.kube/config)"
+spruce:
+- base: stubs/eirini-dev.yml
+  merge:
+  - with:
+      files:
+      - stubs/include-unit-tests.yml
+  to: eirini-ci.yml

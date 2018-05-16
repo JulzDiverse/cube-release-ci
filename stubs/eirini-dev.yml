@@ -1,19 +1,4 @@
-groups:
-- name: erini-cd
-  jobs:
-  - deploy-cube-release
-- name: erini-ci
-  jobs:
-  - run-unit-tests
-
 jobs:
-- name: run-unit-tests
-  plan:
-  - get: eirini
-  - get: ci-resources
-  - task: run-tests
-    file: ci-resources/tasks/run-unit-tests.yml
-
 - name: deploy-cube-release
   plan:
   - get: eirini-sl-director
@@ -40,13 +25,13 @@ jobs:
       EIRINI_ADDRESS: ((eirini_address))
     file: ci-resources/tasks/deploy-cube-release.yml
 
-resources:
-- name: eirini
-  type: git
-  source:
-    uri: https://github.com/julz/cube.git
-    branch: master
+- name: delete-cf-deployment
+  plan:
+  - get: ci-resources
+  - task: delete
+    file: ci-resources/tasks/delete-cf-deployment.yml
 
+resources:
 - name: ci-resources
   type: git
   source:
@@ -74,6 +59,6 @@ resources:
 - name: eirini-sl-director
   type: git
   source:
-    uri: ((director_repo))
+    uri: git@github.ibm.com:eirini/eirini-director.git
     branch: master
     private_key: ((eirini-sl-director-private-key))

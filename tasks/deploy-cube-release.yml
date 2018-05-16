@@ -21,4 +21,4 @@ inputs:
 - name: eirini-sl-director
 
 run:
-  path: ci-resources/scripts/deploy-cube-release.sh
+  path: ci-resources/tasks/deploy-cube-release.sh
