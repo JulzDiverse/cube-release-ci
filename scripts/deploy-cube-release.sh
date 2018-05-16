@@ -30,14 +30,14 @@ bosh -e lite -d cf deploy -n ../cf-deployment/cf-deployment.yml \
      -o ./operations/dev-version.yml \
      -o ../bosh-lite-softlayer/operations/cf-deployment/add-dns-entry.yml \
      --var=k8s_flatten_cluster_config="$(kubectl config view --flatten=true)" \
-     -v system_domain=eirini.dynamic-dns.net \
+     -v system_domain=$SYSTEM_DOMAIN \
      -v cc_api=$CC_API \
      -v kube_namespace=$KUBE_NAMESPACE \
-     -v kube_endpoint="cube-kube.uk-south.containers.mybluemix.net" \
-     -v nats_ip="10.244.0.129" \
-     -v nats_password="x9blf5cuv2gc11km13po" \
-     -v cube_ip="10.244.0.142" \
-     -v cube_address="http://eirini.eirini.dynamic-dns.net:8090" \
+     -v kube_endpoint=$KUBE_ENDPOINT \
+     -v nats_ip=$NATS_IP \
+     -v nats_password=$NATS_PASSWORD \
+     -v cube_ip=$EIRINI_IP \
+     -v cube_address=$EIRINI_ADDRESS \
      -v cube_local_path=./
 
 echo "::::::::::::::CLEAN-UP:::::::;::::::::::"

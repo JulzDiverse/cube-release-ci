@@ -1,7 +1,7 @@
 fly -t flintstone set-pipeline \
-	--pipeline eirini-release-ci \
+	--pipeline $1 \
 	--config pipeline.yml \
 	--var "cube_conf=$(kubectl config view --flatten)" \
-        -l creds/vars.yml
+        -l $2
 
-
+#TODO: extract variables

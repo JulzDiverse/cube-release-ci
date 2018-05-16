@@ -30,7 +30,13 @@ jobs:
       DIRECTOR_IP: ((director_ip))
       CC_API: ((cc_api))
       KUBE_CONF: ((cube_conf))
-      KUBE_NAMESPACE: "eirini-cicd"
+      KUBE_ENDPOINT: ((cube_endpoint))
+      KUBE_NAMESPACE: ((kube_namespace))
+      NATS_IP: ((nats_ip))
+      NATS_PASSWORD: ((nats_password))
+      SYSTEM_DOMAIN: ((system_domain))
+      EIRINI_IP: ((eirini_ip))
+      EIRINI_ADDRESS: ((eirini_address))
     file: ci-resources/tasks/deploy-cube-release.yml
 
 resources:
@@ -56,7 +62,7 @@ resources:
   type: git
   source:
     uri: https://github.com/cloudfoundry/cf-deployment.git
-    branch: v1.20.0
+    branch: ((cf-deployment-version))
 
 - name: bosh-lite-softlayer
   type: git
@@ -67,6 +73,6 @@ resources:
 - name: eirini-sl-director
   type: git
   source:
-    uri: git@github.ibm.com:eirini/eirini-director.git
+    uri: ((director_repo))
     branch: master
     private_key: ((eirini-sl-director-private-key))
