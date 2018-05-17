@@ -1,7 +1,8 @@
 jobs:
-- name: deploy-cube-release
+- name: deploy-eirini-release
   plan:
-  - get: eirini-sl-director
+  - get: state
+    passed: []
   - get: ci-resources
   - get: eirini-release
     trigger: true
@@ -57,7 +58,7 @@ resources:
     uri: http://github.com/JulzDiverse/bosh-lite-softlayer.git
     branch: master
 
-- name: eirini-sl-director
+- name: state
   type: git
   source:
     uri: git@github.ibm.com:eirini/eirini-director.git

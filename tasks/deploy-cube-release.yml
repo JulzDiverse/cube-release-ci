@@ -18,7 +18,7 @@ inputs:
 - name: eirini-release
 - name: cf-deployment
 - name: bosh-lite-softlayer
-- name: eirini-sl-director
+- name: state
 
 run:
   path: ci-resources/tasks/deploy-cube-release.sh

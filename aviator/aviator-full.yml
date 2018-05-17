@@ -1,0 +1,11 @@
+spruce:
+- base: $ONE_CLICK/template.yml
+  merge:
+  - with:
+      files:
+      - ../stubs/eirini-dev.yml
+  modify:
+    set:
+    - path: jobs.name:deploy-eirini-release.plan.get:state.passed.+
+      value: update-cloud-config-eirini
+  to: ../eirini-full.yml
