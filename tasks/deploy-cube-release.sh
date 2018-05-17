@@ -18,7 +18,7 @@ bosh add-blob /eirini/eirinifs.tar cubefs/cubefs.tar
 
 git submodule update --init --recursive
 
-local nats_password=`bosh int ../state/cf-deployment/deployment-vars.yml --path /nats_password`
+nats_password=`bosh int ../state/cf-deployment/deployment-vars.yml --path /nats_password`
 
 echo "::::::::::::::DEPLOY CUBE RELEASE:::::::"
 bosh -e lite -d cf deploy -n ../cf-deployment/cf-deployment.yml \

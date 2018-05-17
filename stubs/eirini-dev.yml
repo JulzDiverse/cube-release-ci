@@ -5,6 +5,8 @@ groups:
 - name: manage-cf
   jobs:
   - delete-cf-deployment
+- name: manage-director
+  jobs: []
 
 jobs:
 - name: deploy-eirini-release
