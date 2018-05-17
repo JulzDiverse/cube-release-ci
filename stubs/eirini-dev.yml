@@ -13,14 +13,12 @@ jobs:
     privileged: true
     params:
       BOSH_DIRECTOR: ((bosh_director))
-      DIRECTOR_IP: ((director_ip))
-      DIRECTOR_NAME: ((director_name))
+      DIRECTOR_NAME: ((bosh_lite_name))
       CC_API: ((cc_api))
       KUBE_CONF: ((kube_conf))
       KUBE_ENDPOINT: ((kube_endpoint))
       KUBE_NAMESPACE: ((kube_namespace))
       NATS_IP: ((nats_ip))
-      NATS_PASSWORD: ((nats_password))
       SYSTEM_DOMAIN: ((system_domain))
       EIRINI_IP: ((eirini_ip))
       EIRINI_ADDRESS: ((eirini_address))
@@ -63,4 +61,4 @@ resources:
   source:
     uri: git@github.ibm.com:eirini/eirini-director.git
     branch: master
-    private_key: ((eirini-sl-director-private-key))
+    private_key: ((github-private-key))

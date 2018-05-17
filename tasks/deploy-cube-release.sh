@@ -2,10 +2,10 @@
 
 set -e
 
-export VARS_PATH=state/environments/softlayer/director/$DIRECTOR_NAME/vars.yml
+export DIRECTOR_PATH=state/environments/softlayer/director/$DIRECTOR_NAME
 
 export BOSH_CLIENT=admin
-export BOSH_CLIENT_SECRET=`bosh int $VARS_PATH --path /admin_password`
+export BOSH_CLIENT_SECRET=`bosh int $DIRECTOR_PATH/vars.yml --path /admin_password`
 
 ./ci-resources/scripts/setup-env.sh
 ./ci-resources/scripts/bosh-login.sh
@@ -17,6 +17,8 @@ bosh sync-blobs
 bosh add-blob /eirini/eirinifs.tar cubefs/cubefs.tar
 
 git submodule update --init --recursive
+
+local nats_password=`bosh int ../state/cf-deployment/deployment-vars.yml --path /nats_password`
 
 echo "::::::::::::::DEPLOY CUBE RELEASE:::::::"
 bosh -e lite -d cf deploy -n ../cf-deployment/cf-deployment.yml \
@@ -34,7 +36,7 @@ bosh -e lite -d cf deploy -n ../cf-deployment/cf-deployment.yml \
      -v kube_namespace=$KUBE_NAMESPACE \
      -v kube_endpoint=$KUBE_ENDPOINT \
      -v nats_ip=$NATS_IP \
-     -v nats_password=$NATS_PASSWORD \
+     -v nats_password=$nats_password \
      -v registry_address=$REGISTRY_ADDRESS \
      -v cube_ip=$EIRINI_IP \
      -v cube_address=$EIRINI_ADDRESS \

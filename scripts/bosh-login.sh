@@ -12,6 +12,6 @@ if [[ -z $BOSH_CLIENT ]] || [[ -z $BOSH_CLIENT_SECRET ]]; then
   exit 1
 fi
 
-bosh --ca-cert <(bosh int $VARS_PATH --path /director_ssl/ca) alias-env $BOSH2_ENV_ALIAS -e $BOSH_DIRECTOR
+bosh --ca-cert <(bosh int $DIRECTOR_PATH/vars.yml --path /director_ssl/ca) alias-env $BOSH2_ENV_ALIAS -e $BOSH_DIRECTOR
 
 bosh -e $BOSH2_ENV_ALIAS log-in -n
