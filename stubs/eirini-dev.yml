@@ -1,3 +1,8 @@
+groups:
+- name: manage-cf
+  jobs:
+  - delete-cf-deployment
+
 jobs:
 - name: deploy-eirini-release
   plan:
@@ -30,6 +35,8 @@ jobs:
   plan:
   - get: ci-resources
   - task: delete
+    params:
+      DIRECTOR_NAME: ((bosh_lite_name))
     file: ci-resources/tasks/delete-cf-deployment.yml
 
 resources:
