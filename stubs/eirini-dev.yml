@@ -1,4 +1,7 @@
 groups:
+- name: erini-cd
+  jobs:
+  - deploy-eirini-release
 - name: manage-cf
   jobs:
   - delete-cf-deployment

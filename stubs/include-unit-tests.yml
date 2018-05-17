@@ -1,13 +1,10 @@
 groups:
 - name: erini-cd
   jobs:
-  - deploy-cube-release
+  - deploy-eirini-release
 - name: erini-ci
   jobs:
   - run-unit-tests
-- name: manage-cf
-  jobs:
-  - delete-cf-deployment
 
 jobs:
 - name: run-unit-tests

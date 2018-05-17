@@ -7,6 +7,6 @@ mkdir -p ~/.kube
 echo "$KUBE_CONF" > ~/.kube/config
 
 
-local director_ip=`cat $DIRECTOR_PATH/ip`
+director_ip=`cat $DIRECTOR_PATH/ip`
 # setup dns entry for bosh director
 echo "$director_ip $BOSH_DIRECTOR" > /etc/hosts
