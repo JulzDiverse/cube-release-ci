@@ -7,5 +7,7 @@ spruce:
   modify:
     set:
     - path: jobs.name:deploy-eirini-release.plan.get:state.passed.+
-      value: update-cloud-config-eirini
+      value: update-cloud-config-((bosh_lite_name))
+    - path: jobs.name:deploy-eirini-release.plan.get:state.trigger
+      value: true
   to: ../eirini-full.yml

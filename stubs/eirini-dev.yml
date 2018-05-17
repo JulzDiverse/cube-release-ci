@@ -3,6 +3,7 @@ jobs:
   plan:
   - get: state
     passed: []
+    trigger: false
   - get: ci-resources
   - get: eirini-release
     trigger: true
