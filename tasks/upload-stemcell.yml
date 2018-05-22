@@ -7,10 +7,10 @@ image_resource:
     repository: diegoteam/eirini
 
 inputs:
-- name: name
+- name: out
 
 outputs:
-- name: name
+- name: out
 
 run:
   path: path
