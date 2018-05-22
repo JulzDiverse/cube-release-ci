@@ -1,7 +1,0 @@
-spruce:
-- base: ../stubs/eirini-dev.yml
-  merge:
-  - with:
-      files:
-      - ../stubs/include-unit-tests.yml
-  to: ../eirini-ci.yml

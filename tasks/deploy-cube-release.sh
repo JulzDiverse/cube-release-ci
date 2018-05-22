@@ -20,8 +20,8 @@ git submodule update --init --recursive
 
 nats_password=`bosh int ../state/cf-deployment/deployment-vars.yml --path /nats_password`
 
-echo "::::::::::::::DEPLOY CUBE RELEASE:::::::"
-bosh -e lite -d cf deploy -n ../cf-deployment/cf-deployment.yml \
+echo "::::::::::::::CREATING MANIFEST:::::::"
+bosh int ../cf-deployment/cf-deployment.yml \
      --vars-store ../state/cf-deployment/deployment-vars.yml \
      -o ../cf-deployment/operations/experimental/enable-bpm.yml \
      -o ../cf-deployment/operations/use-compiled-releases.yml \
@@ -40,7 +40,14 @@ bosh -e lite -d cf deploy -n ../cf-deployment/cf-deployment.yml \
      -v registry_address=$REGISTRY_ADDRESS \
      -v cube_ip=$EIRINI_IP \
      -v cube_address=$EIRINI_ADDRESS \
-     -v cube_local_path=./
+     -v cube_local_path=./ > manifest.yml
+
+STEMCELL_VERSION=$(bosh int manifest.yml --path /releases/name=capi/stemcell/version)
+
+echo "::::::::::::::UPLOAD-STEMCELL-VERSION: $STEMCELL_VERSION :::::::::::"
+bosh -e lite upload-stemcell https://bosh.io/d/stemcells/bosh-warden-boshlite-ubuntu-trusty-go_agent\?v\=$STEMCELL_VERSION
+
+bosh -e lite -d cf deploy -n manifest.yml
 
 echo "::::::::::::::CLEAN-UP:::::::;::::::::::"
 bosh -e lite clean-up --non-interactive --all

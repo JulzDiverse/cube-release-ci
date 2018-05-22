@@ -1,11 +1,44 @@
 #!/bin/bash
 
-readonly PIPELINE_NAME=$1
-readonly PIPELINE_CONFIG_FILE=$2
+readonly ALIAS=$1
+readonly PIPELINE_NAME=$2
 readonly ENV_PROPERTIES=$3
 
-fly -t flintstone set-pipeline \
+PIPELINE_CONFIG_FILE=""
+
+usage(){
+  cat << EOF
+    Pipeline not found, but you can set a eirini-pipeline using the following command:
+
+    fly -t $ALIAS set-pipeline
+	--pipeline $PIPELINE_NAME
+	--config <PROVIDE>
+	--var "kube_conf=\$(kubectl config view --flatten)"
+        --load-vars-from $ENV_PROPERTIES
+EOF
+
+  exit 1
+}
+
+detect_pipeline(){
+	if [ "$PIPELINE_NAME" = "eirini-ci" ]; then
+	  aviator -f aviator/eirini-ci.yml
+	  PIPELINE_CONFIG_FILE=eirini-ci.yml
+	elif [ "$PIPELINE_NAME" = "eirini-dev" ]; then
+          PIPELINE_CONFIG_FILE=stubs/eirini-dev.yml
+        else
+	  usage
+        fi
+}
+
+main(){
+  detect_pipeline
+
+  fly -t $ALIAS set-pipeline \
 	--pipeline $PIPELINE_NAME \
 	--config $PIPELINE_CONFIG_FILE \
 	--var "kube_conf=$(kubectl config view --flatten)" \
         --load-vars-from $ENV_PROPERTIES
+}
+
+main

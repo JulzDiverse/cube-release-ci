@@ -36,28 +36,48 @@ fly -t <alias> login \
 ### Prereqs
 
 - Access to private repo, which contains environment specific vars
-- [Aviator](https://github.com/JulzDiverse/aviator)
+- Install [Aviator](https://github.com/JulzDiverse/aviator) (used to merge pipeline YAML files)
 
-### Fly `eirini-ci`
+### Fly `eirini-ci`/`eirini-dev`
 
-1. Create the pipelin YAML:
+1. export the `KUBECONFIG` environment variable and point it to corresponding kubernetes config file
 
-```
-$ aviator
-```
-
-This will create the `eirini-ci.yml`
-
-1. Fly the pipeline using the `./fly.sh` script:
+1. Execute the provided `./fly.sh` script as follows:
 
 ```
-./fly.sh eirini-ci eirini-ci.yml <path-to-private-repo>/concourse/env/eirini.yml
+$ ./fly.sh <CONCOURSE-ALIAS> <eirini-ci|eirini-dev> <PATH-TO-PRIVATE-VARS-FILE>
 ```
 
-### Fly `eirini-dev`
+This will use aviator to spruce the required pipeline.yml and fly the pipeline to your concourse target.
+
+### Create a full new Development pipeline
+
+**Further Prereqs**
+
+- Clone [1-click-pipeline](https://github.com/petergtz/1-click-bosh-lite-pipeline) to your local machine
+- Make sure you have access to the Flintstone Softlayer account with rights to create VMs. 
+
+**Fly**
+
+1. Create the director manifest as described in the [1-click-pipeline](https://github.com/petergtz/1-click-bosh-lite-pipeline/#creating-a-bosh-lite-using-a-concourse-management-pipeline) README.
+
+1. Create the `eirini-full.yml` file using aviator:
+
+`$ ONE_CLICK=<path-to-1-click-pipeline> aviator -f aviator/eirini-full.yml`
+
+
+1. In the `eirini-private-config` repo you can find a `eirini-full.yml` property file (located in the `concourse/env` dir). Copy the file and provide the necessary information. 
+
+1. export the `KUBECONFIG` environment variable and point it to corresponding kubernetes config file
+
+1. Run fly as follows:
 
 ```
-./fly.sh eirini-dev stubs/eirini-dev.yml <path-to-private-repo>/concourse/env/eirini-dev.yml
+$ fly -t flintstone \
+  set-pipeline \
+    -p <PIPELINE-NAME> \
+    -c eirini-full.yml \
+    -v bosh-manifest="$(sed -e 's/((/_(_(/g' <PATH-TO-DIRECTOR-MANIFEST> )" \
+    -l <PATH-TO-VARS-FILE> \
+    --var "kube_conf=$(kubectl config view --flatten)"
 ```
-
-
