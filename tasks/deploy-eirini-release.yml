@@ -20,4 +20,4 @@ inputs:
 - name: state
 
 run:
-  path: ci-resources/tasks/deploy-cube-release.sh
+  path: ci-resources/tasks/deploy-eirini-release.sh

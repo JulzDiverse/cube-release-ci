@@ -45,7 +45,7 @@ jobs:
     params:
       BOSH_DIRECTOR: ((bosh_director))
       DIRECTOR_NAME: ((bosh_lite_name))
-    file: ci-resources/tasks/deploy-cube-release.yml
+    file: ci-resources/tasks/deploy-eirini-release.yml
 
 - name: delete-cf-deployment
   plan:
