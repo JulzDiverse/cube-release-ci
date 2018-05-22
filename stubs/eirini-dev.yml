@@ -43,6 +43,7 @@ jobs:
   - task: delete
     params:
       DIRECTOR_NAME: ((bosh_lite_name))
+      BOSH_DIRECTOR: ((bosh_director))
     file: ci-resources/tasks/delete-cf-deployment.yml
 
 resources:
