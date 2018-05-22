@@ -6,6 +6,9 @@ image_resource:
   source:
     repository: diegoteam/eirini
 
+params:
+  BOSH2_ENV_ALIAS: lite
+
 inputs:
 - name: state
 - name: ci-resources
