@@ -44,12 +44,12 @@ bosh int ../cf-deployment/cf-deployment.yml \
 
 STEMCELL_VERSION=$(bosh int manifest.yml --path /releases/name=capi/stemcell/version)
 
-echo "::::::::::::::UPLOAD-STEMCELL-VERSION: $STEMCELL_VERSION :::::::::::"
+echo "::::::::::::::UPLOAD-STEMCELL-VERSION: $STEMCELL_VERSION"
 bosh -e lite upload-stemcell https://bosh.io/d/stemcells/bosh-warden-boshlite-ubuntu-trusty-go_agent\?v\=$STEMCELL_VERSION
 
 bosh -e lite -d cf deploy -n manifest.yml
 
-echo "::::::::::::::CLEAN-UP:::::::;::::::::::"
+echo "::::::::::::::CLEAN-UP"
 bosh -e lite clean-up --non-interactive --all
 
 popd

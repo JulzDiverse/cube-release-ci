@@ -10,4 +10,4 @@ inputs:
 - name: ci-resources
 
 run:
-  path: ci-resouces/tasks/delete-cf-deployment.sh
+  path: ci-resources/tasks/delete-cf-deployment.sh

@@ -45,7 +45,7 @@ fly -t <alias> login \
 1. Execute the provided `./fly.sh` script as follows:
 
 ```
-$ ./fly.sh <CONCOURSE-ALIAS> <eirini-ci|eirini-dev> <PATH-TO-PRIVATE-VARS-FILE>
+$ ./fly.sh <CONCOURSE-ALIAS> <eirini-ci|eirini-dev> <PATH-TO-PRIVATE-REPO>
 ```
 
 This will use aviator to spruce the required pipeline.yml and fly the pipeline to your concourse target.
@@ -79,5 +79,6 @@ $ fly -t flintstone \
     -c eirini-full.yml \
     -v bosh-manifest="$(sed -e 's/((/_(_(/g' <PATH-TO-DIRECTOR-MANIFEST> )" \
     -l <PATH-TO-VARS-FILE> \
+    -l <PATH-TO-COMMON-VARS-FILE> \
     --var "kube_conf=$(kubectl config view --flatten)"
 ```
