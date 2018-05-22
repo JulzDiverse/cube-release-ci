@@ -39,6 +39,7 @@ jobs:
 - name: delete-cf-deployment
   plan:
   - get: ci-resources
+  - get: state
   - task: delete
     params:
       DIRECTOR_NAME: ((bosh_lite_name))
