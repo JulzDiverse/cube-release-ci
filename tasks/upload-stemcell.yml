@@ -1,0 +1,16 @@
+---
+platform: linux
+
+image_resource:
+  type: docker-image
+  source:
+    repository: diegoteam/eirini
+
+inputs:
+- name: name
+
+outputs:
+- name: name
+
+run:
+  path: path

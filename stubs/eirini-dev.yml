@@ -20,6 +20,12 @@ jobs:
   - get: cf-deployment
     trigger: true
   - get: bosh-lite-softlayer
+  - task: create-manifest
+    priviliged: true
+    file: ci-resource/task/create-manifest.yml
+  - task: upload-stemcell
+    priviliged: true
+    file: ci-resource/task/upload-stemcell.yml
   - task: deploy
     privileged: true
     params:
