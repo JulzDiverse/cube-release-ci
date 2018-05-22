@@ -20,4 +20,5 @@ jobs:
     - deploy-eirini-release
   - task: run-smoke-tests
     params:
+        SYSTEM_DOMAIN: ((system_domain))
     file: ci-resources/tasks/run-smoke-tests.yml
