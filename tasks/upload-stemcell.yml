@@ -12,6 +12,7 @@ params:
 inputs:
 - name: ci-resources
 - name: state
+- name: out
 
 outputs:
 - name: out
