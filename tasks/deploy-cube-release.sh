@@ -18,7 +18,7 @@ bosh add-blob /eirini/eirinifs.tar cubefs/cubefs.tar
 
 git submodule update --init --recursive
 
-bosh -e lite -d cf deploy -n ../out/manifest.yml
+bosh -e lite -d cf deploy -n ../manifest/manifest.yml
 
 echo "::::::::::::::CLEAN-UP"
 bosh -e lite clean-up --non-interactive --all

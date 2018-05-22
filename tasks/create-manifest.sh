@@ -34,5 +34,5 @@ bosh int ../cf-deployment/cf-deployment.yml \
      -v registry_address=$REGISTRY_ADDRESS \
      -v cube_ip=$EIRINI_IP \
      -v cube_address=$EIRINI_ADDRESS \
-     -v cube_local_path=./ > ../out/manifest.yml
+     -v cube_local_path=./ > ../manifest/manifest.yml
 

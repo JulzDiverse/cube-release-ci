@@ -16,7 +16,7 @@ params:
 inputs:
 - name: ci-resources
 - name: eirini-release
-- name: out
+- name: manifest
 - name: state
 
 run:

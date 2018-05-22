@@ -16,7 +16,7 @@ inputs:
 - name: state
 
 outputs:
-- name: out
+- name: manifest
 
 run:
   path: ci-resources/tasks/create-manifest.sh
