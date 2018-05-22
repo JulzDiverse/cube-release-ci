@@ -38,7 +38,7 @@ main(){
 	--pipeline $PIPELINE_NAME \
 	--config $PIPELINE_CONFIG_FILE \
 	--var "kube_conf=$(kubectl config view --flatten)" \
-        --load-vars-from $PRIVATE_REPO/concourse/env/${PIPELINE_NAME}.yml
+        --load-vars-from $PRIVATE_REPO/concourse/env/${PIPELINE_NAME}.yml \
         --load-vars-from $PRIVATE_REPO/concourse/env/common.yml
 }
 

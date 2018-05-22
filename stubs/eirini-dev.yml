@@ -1,5 +1,5 @@
 groups:
-- name: erini-cd
+- name: eirini-cd
   jobs:
   - deploy-eirini-release
 - name: manage-cf
