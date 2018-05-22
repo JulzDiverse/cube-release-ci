@@ -19,4 +19,4 @@ outputs:
 - name: out
 
 run:
-  path: path
+  path: ci-resources/tasks/create-manifest.sh

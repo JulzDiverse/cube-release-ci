@@ -19,7 +19,6 @@ jobs:
     trigger: true
   - get: cf-deployment
     trigger: true
-  - get: bosh-lite-softlayer
   - task: create-manifest
     params:
       BOSH_DIRECTOR: ((bosh_director))
@@ -33,14 +32,14 @@ jobs:
       EIRINI_IP: ((eirini_ip))
       EIRINI_ADDRESS: ((eirini_address))
       REGISTRY_ADDRESS: ((registry_address))
-    priviliged: true
-    file: ci-resource/task/create-manifest.yml
+    privileged: true
+    file: ci-resources/tasks/create-manifest.yml
   - task: upload-stemcell
-    priviliged: true
+    privileged: true
     params:
       BOSH_DIRECTOR: ((bosh_director))
       DIRECTOR_NAME: ((bosh_lite_name))
-    file: ci-resource/task/upload-stemcell.yml
+    file: ci-resources/tasks/upload-stemcell.yml
   - task: deploy
     privileged: true
     params:
