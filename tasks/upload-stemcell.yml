@@ -6,11 +6,15 @@ image_resource:
   source:
     repository: diegoteam/eirini
 
+params:
+  BOSH2_ENV_ALIAS: lite
+
 inputs:
-- name: out
+- name: ci-resources
+- name: state
 
 outputs:
 - name: out
 
 run:
-  path: path
+  path: ci-resources/tasks/upload-stemcell.sh

@@ -7,10 +7,13 @@ image_resource:
     repository: diegoteam/eirini
 
 params:
-  key: value
+  BOSH2_ENV_ALIAS: lite
 
 inputs:
-- name: name
+- name: ci-resources
+- name: cf-deployment
+- name: eirini-release
+- name: state
 
 outputs:
 - name: out

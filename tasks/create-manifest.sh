@@ -23,7 +23,7 @@ bosh int ../cf-deployment/cf-deployment.yml \
      -o ../cf-deployment/operations/experimental/use-bosh-dns.yml \
      -o ./operations/cube-bosh-operations.yml \
      -o ./operations/dev-version.yml \
-     -o ../bosh-lite-softlayer/operations/cf-deployment/add-dns-entry.yml \
+     -o ../cf-deployment/iaas-support/softlayer/add-system-domain-dns-alias.yml \
      --var=k8s_flatten_cluster_config="$(kubectl config view --flatten=true)" \
      -v system_domain=$SYSTEM_DOMAIN \
      -v cc_api=$CC_API \

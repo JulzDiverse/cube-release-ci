@@ -16,8 +16,7 @@ params:
 inputs:
 - name: ci-resources
 - name: eirini-release
-- name: cf-deployment
-- name: bosh-lite-softlayer
+- name: out
 - name: state
 
 run:
